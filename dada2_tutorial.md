@@ -71,13 +71,11 @@ https://zenodo.org/record/800651/files/mouse.dpw.metadata
 ### 3. Organise data into paired collection
 There are a lot of files in the history now but Galaxy can organise our files into collections to make it more managable. Since we have paired-end data, each sample consists of two separate fastq files, one containing the forward reads, and one containing the reverse reads. We can recognise the pairing from the file names, which will differ only by _R1 or _R2 in the filename. We can tell Galaxy about this paired naming convention, so that our tools will know which files belong together. We do this by building a List of Dataset Pairs.
 
-Click on the checkmark icon param-check at top of your history.
-Select all the FASTQ files (40 in total)
-Type 'fastq' in the search bar at the top of your history to filter only the FASTQ files; you can now use the 'All' button at the top instead of having to individually select all 40 input files.
+Click on the tick icon param-check at top of your history.
+Select all the FASTQ files (40 in total). Tip: Type 'fastq' in the search bar at the top of your history to filter only the FASTQ files; you can now use the 'All' button at the top instead of having to individually select all 40 input files.
 Click on 'For all selected..'
 Select 'Build List of Dataset Pairs' from the dropdown menu
 In the next dialog window you can create the list of pairs. By default Galaxy will look for pairs of files that differ only by a _1 and _2 part in their names. In our case however, these should be _R1 and _R2.
-
 Change these values accordingly
 Change _1 to _R1 in the text field on the top left
 Change _2 to _R2 om the text field on the top right
@@ -85,4 +83,37 @@ You should now see a list of pairs suggested by Galaxy:
 
 ![Collection_1](/images/collection_1.png)
 
+Click on auto-pair to create the suggested pairs.
 
+![Collection_2](/images/collection_2.png)
+
+Name the pairs
+The middle segment is the name for each pair.
+These names will be used as sample names in the downstream analysis, so always make sure they are informative!
+Check that the pairs are named F3D0-F3D9, F3D141-F3D150 and Mock.
+If needed, the names can be edited by clicking on them
+Name your collection at the bottom right of the screen, for e.g. 'SOP data'
+Click the 'Create List' button. A new dataset collection item will now appear in your history
+
+## Inspect read quality profiles
+
+Now we have the data in galaxy, we can visulaise the quality profiles of the forward reads and reverse reads. 
+
+The 'dada2: plotQualityProfile' tool will allow us to do this.  
+
+Select 'dada2: plotQualityProfile' from the tool panel and set the follwing paramters
+'Processing mode': batch
+'Paired reads': paired - in a data set pair
+'Paired short read data': SOP data (or whatever name you gave the collection)
+
+Once complete, we can view the quality profiles using the 'eye' icon. 
+
+
+
+In gray-scale is a heat map of the frequency of each quality score at each base position. The mean quality score at each position is shown by the green line, and the quartiles of the quality score distribution by the orange lines. The red line shows the scaled proportion of reads that extend to at least that position (this is more useful for other sequencing technologies, as Illumina reads are typically all the same length, hence the flat red line). Below are quality profiles for sample F3D0 for the forward and reverse reads. 
+
+![quality profile forward](/images/quality_profile_forward.png)
+
+The forward reads are good quality. We generally advise trimming the last few nucleotides to avoid less well-controlled errors that can arise there. These quality profiles do not suggest that any additional trimming is needed. We will truncate the forward reads at position 240 (trimming the last 10 nucleotides).
+
+![quality profile reverse](/images/quality_profile_reverse.png)
