@@ -101,19 +101,52 @@ Now we have the data in galaxy, we can visulaise the quality profiles of the for
 
 The 'dada2: plotQualityProfile' tool will allow us to do this.  
 
-Select 'dada2: plotQualityProfile' from the tool panel and set the follwing paramters
+Select 'dada2: plotQualityProfile' from the tool panel and set the following paramters
 'Processing mode': batch
 'Paired reads': paired - in a data set pair
 'Paired short read data': SOP data (or whatever name you gave the collection)
 
-Once complete, we can view the quality profiles using the 'eye' icon. 
+Once complete, there will be two collections of plots in your galaxy history. One for the forward reads and another for the reverse. We can view the quality profiles using the 'eye' icon. Below are quality profiles for the forward and reverse reads of sample F3D0. 
 
-
-
-In gray-scale is a heat map of the frequency of each quality score at each base position. The mean quality score at each position is shown by the green line, and the quartiles of the quality score distribution by the orange lines. The red line shows the scaled proportion of reads that extend to at least that position (this is more useful for other sequencing technologies, as Illumina reads are typically all the same length, hence the flat red line). Below are quality profiles for sample F3D0 for the forward and reverse reads. 
+In gray-scale is a heat map of the frequency of each quality score at each base position. The mean quality score at each position is shown by the green line, and the quartiles of the quality score distribution by the orange lines. The red line shows the scaled proportion of reads that extend to at least that position (this is more useful for other sequencing technologies, as Illumina reads are typically all the same length, hence the flat red line). 
 
 ![quality profile forward](/images/quality_profile_forward.png)
 
-The forward reads are good quality. We generally advise trimming the last few nucleotides to avoid less well-controlled errors that can arise there. These quality profiles do not suggest that any additional trimming is needed. We will truncate the forward reads at position 240 (trimming the last 10 nucleotides).
+The forward reads are good quality. We generally advise trimming the last few nucleotides to avoid less well-controlled errors that can arise there. These quality profiles do not suggest that any additional trimming is needed. 
 
 ![quality profile reverse](/images/quality_profile_reverse.png)
+
+The reverse reads are of significantly worse quality, especially at the end, which is common in Illumina sequencing. This isn’t too worrisome, as DADA2 incorporates quality information into its error model which makes the algorithm robust to lower quality sequence, but trimming as the average qualities crash will improve the algorithm’s sensitivity to rare sequence variants. 
+
+Based on these profiles, we will truncate the forward reads at position 240 and the reverse reads at position 160.
+
+## Unzip collection
+
+For the remainder of the DADA2 pipeline we will need to work with forward and reverse reads separately. Galaxy has a tool called 'Unzip Collection' which will separate forward and reverse reads. 
+
+Select 'Unzip Collection' from the tool panel and set the following paramters
+'Input Paired Dataset': SOP data (or whatever name you gave the collection)
+
+This will create two collections in your Galaxy history, one for forward reads and another for reverse reads. 
+
+
+## Filter and trim 
+
+dada2: filterAndTrim
+
+Select 'dada2: filterAndTrim' from the tool panel and set the following paramters
+'Paired reads': paired - in two separate datasets
+'Forward read data': select the dataset collection tab and then the forward collection from the drop down list 
+'Reverse read data': select the dataset collection tab and then the reverse collection from the drop down list
+Select 'Trimming paramters' to see more options
+'Truncate read length': 240
+Select 'Filtering paramters' to see more options
+'Remove reads by number expected errors': 2
+Separate filters and trimmers for reverse reads: yes
+Select 'Trimming paramters' to see more options
+'Truncate read length': 160
+Select 'Filtering paramters' to see more options
+'Remove reads by number expected errors': 2
+
+This will add three collections to the history for forward reads, reverse reads and statistics.
+
