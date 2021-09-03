@@ -167,9 +167,22 @@ Select the 'pencil' icon
 Edit the name to reflect that it is for the forward reads
 Save changes
 
+Below the plot produced for the forward reads 
+
+![learn errors forward](/images/learn_errors_forward.png)
+
+The error rates for each possible transition (A→C, A→G, …) are shown. Points are the observed error rates for each consensus quality score. The black line shows the estimated error rates after convergence of the machine-learning algorithm. The red line shows the error rates expected under the nominal definition of the Q-score. Here the estimated error rates (black line) are a good fit to the observed rates (points), and the error rates drop with increased quality as expected. Everything looks reasonable and we proceed with confidence.
+
 Repeats the learnError step for the reverse reads as above. 
 
+## Sample inference
 
+We are now ready to apply the core sample inference algorithm to the filtered and trimmed sequence data.
 
-Make sure to rename the collectio
+Select 'dada2: dada' from the tool panel and set the following paramters
+'Reads': select the dataset collection tab and then the filterAndTrim collection for forward reads from the drop down list 
+'Error rates': learn error output for the forward reads
 
+As above, we need to rename the the output so it is clear the results are for the forward reads.
+
+R
