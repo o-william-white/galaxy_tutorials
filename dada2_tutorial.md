@@ -132,7 +132,7 @@ This will create two collections in your Galaxy history, one for forward reads a
 
 ## Filter and trim 
 
-dada2: filterAndTrim
+We will use the tool 'dada2: filterAndTrim' to clean the data. 
 
 Select 'dada2: filterAndTrim' from the tool panel and set the following paramters
 'Paired reads': paired - in two separate datasets
@@ -149,4 +149,27 @@ Select 'Filtering paramters' to see more options
 'Remove reads by number expected errors': 2
 
 This will add three collections to the history for forward reads, reverse reads and statistics.
+
+## Learn error rates
+
+The DADA2 algorithm makes use of a parametric error model (err) and every amplicon dataset has a different set of error rates. The learnErrors method learns this error model from the data, by alternating estimation of the error rates and inference of sample composition until they converge on a jointly consistent solution. As in many machine-learning problems, the algorithm must begin with an initial guess, for which the maximum possible error rates in this data are used (the error rates if only the most abundant sequence is correct and all the rest are errors).
+
+We will use the tool 'dada2: learnErrors' to generate error models for the forward and reverse reads.
+
+Select 'dada2: learnErrors' from the tool panel and set the following paramters
+'Short read data': paired - in two separate datasets
+'Forward read data': select the dataset collection tab and then the filterAndTrim collection for forward reads from the drop down list 
+
+This will add two datasets to you Galaxy history. Rename the Galaxy history so that it is clear that this output is for the forward reads. 
+
+For each dataset produced by learnErrors: 
+Select the 'pencil' icon
+Edit the name to reflect that it is for the forward reads
+Save changes
+
+Repeats the learnError step for the reverse reads as above. 
+
+
+
+Make sure to rename the collectio
 
