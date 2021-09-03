@@ -9,7 +9,7 @@ In this tutorial we will analyse 16S rRNA sequencing data using the R package DA
 ### 1. Make sure you have an empty analysis history and give it a name.
 Click the + icon at the top of the history panel.
 If the + icon is missing:
-1. Click on the gear icon (History options) on the top of the history panel
+1. Click on the gear icon on the top of the history panel
 2. Select the option 'Create New' from the menu
 
 ### 2. Import sample data and referece data
@@ -69,9 +69,19 @@ https://zenodo.org/record/800651/files/trainset9_032012.pds.tax
 https://zenodo.org/record/800651/files/mouse.dpw.metadata
 ```
 ### 3. Organise data into paired collection
-There are a lot of files in the history now but Galaxy can organise our files into collections to make it more managable. Since we have paired-end data, each sample consists of two separate fastq files, one containing the forward reads, and one containing the reverse reads. We can recognize the pairing from the file names, which will differ only by _R1 or _R2 in the filename. We can tell Galaxy about this paired naming convention, so that our tools will know which files belong together. We do this by building a List of Dataset Pairs.
+There are a lot of files in the history now but Galaxy can organise our files into collections to make it more managable. Since we have paired-end data, each sample consists of two separate fastq files, one containing the forward reads, and one containing the reverse reads. We can recognise the pairing from the file names, which will differ only by _R1 or _R2 in the filename. We can tell Galaxy about this paired naming convention, so that our tools will know which files belong together. We do this by building a List of Dataset Pairs.
 
+Click on the checkmark icon param-check at top of your history.
+Select all the FASTQ files (40 in total)
+Type 'fastq' in the search bar at the top of your history to filter only the FASTQ files; you can now use the 'All' button at the top instead of having to individually select all 40 input files.
+Click on 'For all selected..'
+Select 'Build List of Dataset Pairs' from the dropdown menu
+In the next dialog window you can create the list of pairs. By default Galaxy will look for pairs of files that differ only by a _1 and _2 part in their names. In our case however, these should be _R1 and _R2.
 
+Change these values accordingly
+Change _1 to _R1 in the text field on the top left
+Change _2 to _R2 om the text field on the top right
+You should now see a list of pairs suggested by Galaxy:
 
 
 
