@@ -83,6 +83,6 @@ Change _1 to _R1 in the text field on the top left
 Change _2 to _R2 om the text field on the top right
 You should now see a list of pairs suggested by Galaxy:
 
-
+![Collection_1](/images/collection_1.png)
 
 
