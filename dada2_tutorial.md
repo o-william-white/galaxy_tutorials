@@ -4,6 +4,9 @@
 ## Overview
 In this tutorial we will analyse 16S rRNA sequencing data using the R package DADA2 in Galaxy, following the same steps as the [DAD2 tutorial](https://benjjneb.github.io/dada2/tutorial.html). We will use MiSeq Standard Operating Procedure (SOP) developed for the Mothur software package.
 
+In this tutorial we wiill cover:
+[Importing the data into Galaxy](#importing-the data-into-galaxy)  
+
 ## Importing the data into Galaxy
 
 ### 1. Make sure you have an empty analysis history and give it a name.
@@ -163,16 +166,14 @@ This will add two datasets to you Galaxy history:
 * "dada2: learnErrors on data x and data y and others: error rates plot" 
 * "dada2: learnErrors on data x and data y, and others" 
 
-However, it is not clear that this step was performed on the forward samples. So we need to rename the results in our history to reflect this. 
+However, it is not clear that this step was performed on the forward samples. So we need to rename the results in our history to:
+* "dada2: learnErrors forward: error rates plot"
+* "dada2: learnErrors forward"
 
 To change the the name of a result in your history: 
 * Select the 'pencil' icon
 * Edit the name 
 * Save changes
-
-Change the names as follows:
-* "dada2: learnErrors on data x and data y and others: error rates plot" to "dada2: learnErrors forward: error rates plot"
-* "dada2: learnErrors on data x and data y, and others" to "dada2: learnErrors forward"
 
 Below the plot produced for the forward reads 
 
@@ -184,16 +185,38 @@ Repeats the learnError step for the reverse reads as above.
 
 ## Sample inference
 
-We are now ready to apply the core sample inference algorithm to the filtered and trimmed sequence data.
+We are now ready to apply the core sample inference algorithm (dada) to the filtered and trimmed sequence data.
 
 Select 'dada2: dada' from the tool panel and set the following paramters:
 * 'Reads': select the dataset collection tab and then the filterAndTrim collection for forward reads from the drop down list 
 * 'Error rates': learn error output for the forward reads
 
-As above, we need to rename the the output so it is clear the results are for the forward reads.
+This will add a single list to you Galaxy history:
+* "dada2: dada on data x and data y and others" 
+
+As above, we need to rename the the output so it is clear the results are for the forward reads. Rename the dada result in our history to:
+* "dada2: dada forward" 
+
+To change the name of a list:
+* Select the list name
+* click the result name to rename 
+* hit enter
 
 Repeat the dada step for the reverse reads as above.
 
 ## Merge paired reads
 
 We now merge the forward and reverse reads together to obtain the full denoised sequences. Merging is performed by aligning the denoised forward reads with the reverse-complement of the corresponding denoised reverse reads, and then constructing the merged “contig” sequences. By default, merged sequences are only output if the forward and reverse reads overlap by at least 12 bases, and are identical to each other in the overlap region (but these conditions can be changed via function arguments).
+
+Select 'dada2: mergePairs' from the tool panel and set the following paramters:
+* 'Dada results for forward reads': select the dataset collection tab and then the dada forward collection from the drop down list
+* 'Forward reads': select the dataset collection tab and then the filterAndTrim collection for forward reads from the drop down list 
+* 'Dada results for reverse reads': select the dataset collection tab and then the dada reverse collection from the drop down list
+* 'Reverse reads': select the dataset collection tab and then the filterAndTrim collection for reverse reads from the drop down list 
+
+## Construct sequence table
+
+We can now construct an amplicon sequence variant table (ASV) table, a higher-resolution version of the OTU table produced by traditional methods.
+
+Select 'dada2: makeSequenceTable' from the tool panel and set the following paramters:
+* 'samples': 
