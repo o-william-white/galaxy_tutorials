@@ -6,6 +6,13 @@ In this tutorial we will analyse 16S rRNA sequencing data using the R package DA
 
 In this tutorial we wiill cover:
  - [Importing the data into Galaxy](#importing-the-data-into-galaxy)  
+ - [Inspect read quality profiles](#)
+ - [Unzip collection](#unzip-collection)
+ - [Filter and trim](#filter-and-trim)
+ - [Learn error rates](#learn-error-rates)
+ - [Sample inference](#sample-inference)
+ - [Merge paired reads](#merge-paired-reads)
+ - [Construct sequence table](#construct-sequence-table)
 
 ## Importing the data into Galaxy
 
