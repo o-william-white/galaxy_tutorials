@@ -12,7 +12,7 @@ If the + icon is missing:
 1. Click on the gear icon on the top of the history panel
 2. Select the option 'Create New' from the menu
 
-### 2. Import sample data and referece data
+### 2. Import sample data and reference data
 Import the sample FASTQ files and reference data to your history from Zenodo using the URLs listed in the box below. 
 Copy the URLs below
 Open the Galaxy Upload Manager ('Upload data' bottun on the top of the tool panel)
@@ -102,9 +102,9 @@ Now we have the data in galaxy, we can visulaise the quality profiles of the for
 The 'dada2: plotQualityProfile' tool will allow us to do this.  
 
 Select 'dada2: plotQualityProfile' from the tool panel and set the following paramters
-'Processing mode': batch
-'Paired reads': paired - in a data set pair
-'Paired short read data': SOP data (or whatever name you gave the collection)
+1. 'Processing mode': batch
+1. 'Paired reads': paired - in a data set pair
+1. 'Paired short read data': SOP data (or whatever name you gave the collection)
 
 Once complete, there will be two collections of plots in your galaxy history. One for the forward reads and another for the reverse. We can view the quality profiles using the 'eye' icon. Below are quality profiles for the forward and reverse reads of sample F3D0. 
 
