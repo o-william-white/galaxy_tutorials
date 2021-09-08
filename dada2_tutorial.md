@@ -101,7 +101,7 @@ Now we have the data in galaxy, we can visulaise the quality profiles of the for
 
 The 'dada2: plotQualityProfile' tool will allow us to do this.  
 
-Select 'dada2: plotQualityProfile' from the tool panel and set the following paramters
+Select 'dada2: plotQualityProfile' from the tool panel and set the following paramters:
 * 'Processing mode': batch
 * 'Paired reads': paired - in a data set pair
 * 'Paired short read data': SOP data (or whatever name you gave the collection)
@@ -124,8 +124,8 @@ Based on these profiles, we will truncate the forward reads at position 240 and 
 
 For the remainder of the DADA2 pipeline we will need to work with forward and reverse reads separately. Galaxy has a tool called 'Unzip Collection' which will separate forward and reverse reads. 
 
-Select 'Unzip Collection' from the tool panel and set the following paramters
-'Input Paired Dataset': SOP data (or whatever name you gave the collection)
+Select 'Unzip Collection' from the tool panel and set the following paramters:
+* 'Input Paired Dataset': SOP data (or whatever name you gave the collection)
 
 This will create two collections in your Galaxy history, one for forward reads and another for reverse reads. 
 
@@ -134,19 +134,19 @@ This will create two collections in your Galaxy history, one for forward reads a
 
 We will use the tool 'dada2: filterAndTrim' to clean the data. 
 
-Select 'dada2: filterAndTrim' from the tool panel and set the following paramters
-'Paired reads': paired - in two separate datasets
-'Forward read data': select the dataset collection tab and then the forward collection from the drop down list 
-'Reverse read data': select the dataset collection tab and then the reverse collection from the drop down list
-Select 'Trimming paramters' to see more options
-'Truncate read length': 240
-Select 'Filtering paramters' to see more options
-'Remove reads by number expected errors': 2
-Separate filters and trimmers for reverse reads: yes
-Select 'Trimming paramters' to see more options
-'Truncate read length': 160
-Select 'Filtering paramters' to see more options
-'Remove reads by number expected errors': 2
+Select 'dada2: filterAndTrim' from the tool panel and set the following paramters:
+* 'Paired reads': paired - in two separate datasets
+* 'Forward read data': select the dataset collection tab and then the forward collection from the drop down list 
+* 'Reverse read data': select the dataset collection tab and then the reverse collection from the drop down list
+* Select 'Trimming paramters' to see more options
+  * 'Truncate read length': 240
+* Select 'Filtering paramters' to see more options
+  * 'Remove reads by number expected errors': 2
+* Separate filters and trimmers for reverse reads: yes
+* Select 'Trimming paramters' to see more options
+  * 'Truncate read length': 160
+* Select 'Filtering paramters' to see more options
+  * 'Remove reads by number expected errors': 2
 
 This will add three collections to the history for forward reads, reverse reads and statistics.
 
@@ -156,16 +156,23 @@ The DADA2 algorithm makes use of a parametric error model (err) and every amplic
 
 We will use the tool 'dada2: learnErrors' to generate error models for the forward and reverse reads.
 
-Select 'dada2: learnErrors' from the tool panel and set the following paramters
-'Short read data': paired - in two separate datasets
-'Forward read data': select the dataset collection tab and then the filterAndTrim collection for forward reads from the drop down list 
+Select 'dada2: learnErrors' from the tool panel and set the following paramters:
+* 'Short read data': select the dataset collection tab and then the filterAndTrim collection for forward reads from the drop down list 
 
-This will add two datasets to you Galaxy history. Rename the Galaxy history so that it is clear that this output is for the forward reads. 
+This will add two datasets to you Galaxy history:
+* "dada2: learnErrors on data x and data y and others: error rates plot" 
+* "dada2: learnErrors on data x and data y, and others" 
 
-For each dataset produced by learnErrors: 
-Select the 'pencil' icon
-Edit the name to reflect that it is for the forward reads
-Save changes
+However, it is not clear that this step was performed on the forward samples. So we need to rename the results in our history to reflect this. 
+
+To change the the name of a result in your history: 
+* Select the 'pencil' icon
+* Edit the name 
+* Save changes
+
+Change the names as follows:
+* "dada2: learnErrors on data x and data y and others: error rates plot" to "dada2: learnErrors forward: error rates plot"
+* "dada2: learnErrors on data x and data y, and others" to "dada2: learnErrors forward"
 
 Below the plot produced for the forward reads 
 
@@ -179,10 +186,14 @@ Repeats the learnError step for the reverse reads as above.
 
 We are now ready to apply the core sample inference algorithm to the filtered and trimmed sequence data.
 
-Select 'dada2: dada' from the tool panel and set the following paramters
-'Reads': select the dataset collection tab and then the filterAndTrim collection for forward reads from the drop down list 
-'Error rates': learn error output for the forward reads
+Select 'dada2: dada' from the tool panel and set the following paramters:
+* 'Reads': select the dataset collection tab and then the filterAndTrim collection for forward reads from the drop down list 
+* 'Error rates': learn error output for the forward reads
 
 As above, we need to rename the the output so it is clear the results are for the forward reads.
 
-R
+Repeat the dada step for the reverse reads as above.
+
+## Merge paired reads
+
+We now merge the forward and reverse reads together to obtain the full denoised sequences. Merging is performed by aligning the denoised forward reads with the reverse-complement of the corresponding denoised reverse reads, and then constructing the merged “contig” sequences. By default, merged sequences are only output if the forward and reverse reads overlap by at least 12 bases, and are identical to each other in the overlap region (but these conditions can be changed via function arguments).
