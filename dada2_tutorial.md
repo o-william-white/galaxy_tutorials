@@ -227,3 +227,27 @@ We can now construct an amplicon sequence variant table (ASV) table, a higher-re
 
 Select 'dada2: makeSequenceTable' from the tool panel and set the following paramters:
 * 'samples': 
+
+
+## Remove chimeras
+
+The core dada method corrects substitution and indel errors, but chimeras remain. Fortunately, the accuracy of sequence variants after denoising makes identifying chimeric ASVs simpler than when dealing with fuzzy OTUs. Chimeric sequences are identified if they can be exactly reconstructed by combining a left-segment and a right-segment from two more abundant “parent” sequences.
+
+
+## Track reads through the pipeline
+
+As a final check of our progress, we’ll look at the number of reads that made it through each step in the pipeline:
+
+## Assign taxonomy
+
+It is common at this point, especially in 16S/18S/ITS amplicon sequencing, to assign taxonomy to the sequence variants. The DADA2 package provides a native implementation of the naive Bayesian classifier method for this purpose. The assignTaxonomy function takes as input a set of sequences to be classified and a training set of reference sequences with known taxonomy, and outputs taxonomic assignments with at least minBoot bootstrap confidence.
+
+DADA2 maintains formatted training fastas for the RDP training set, GreenGenes clustered at 97% identity, and the Silva reference database, and additional trainings fastas suitable for protists and certain specific environments have been contributed. For fungal taxonomy, the General Fasta release files from the UNITE ITS database can be used as is.
+
+Download the silva_nr_v132_train_set.fa.gz file
+
+Open the Galaxy Upload Manager ('Upload data' bottun on the top of the tool panel)
+Select 'Paste/Fetch Data'
+Paste the URL https://zenodo.org/record/4587955/files/silva_nr99_v138.1_train_set.fa.gz into the text field 
+Press Start
+Close the window
