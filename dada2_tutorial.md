@@ -102,9 +102,9 @@ Now we have the data in galaxy, we can visulaise the quality profiles of the for
 The 'dada2: plotQualityProfile' tool will allow us to do this.  
 
 Select 'dada2: plotQualityProfile' from the tool panel and set the following paramters
-1. 'Processing mode': batch
-1. 'Paired reads': paired - in a data set pair
-1. 'Paired short read data': SOP data (or whatever name you gave the collection)
+* 'Processing mode': batch
+* 'Paired reads': paired - in a data set pair
+* 'Paired short read data': SOP data (or whatever name you gave the collection)
 
 Once complete, there will be two collections of plots in your galaxy history. One for the forward reads and another for the reverse. We can view the quality profiles using the 'eye' icon. Below are quality profiles for the forward and reverse reads of sample F3D0. 
 
