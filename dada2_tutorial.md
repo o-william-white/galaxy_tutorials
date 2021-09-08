@@ -5,7 +5,7 @@
 In this tutorial we will analyse 16S rRNA sequencing data using the R package DADA2 in Galaxy, following the same steps as the [DAD2 tutorial](https://benjjneb.github.io/dada2/tutorial.html). We will use MiSeq Standard Operating Procedure (SOP) developed for the Mothur software package.
 
 In this tutorial we wiill cover:
-[Importing the data into Galaxy](#importing-the data-into-galaxy)  
+ - [Importing the data into Galaxy](#importing-the data-into-galaxy)  
 
 ## Importing the data into Galaxy
 
