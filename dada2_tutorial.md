@@ -271,17 +271,16 @@ Close the window
 Select 'dada2: assignTaxonomy and addSpecies' from the tool panel and set the following paramters:
 * 'sequences to be assigned': removeBimeraDenovo output
 * 'Select a reference dataset your history or use a built-in?': Use reference data from history
+* 'Names of the taxonomic levels in the data set': domain,phylum,class,order,family,genus
  * 'Reference dataset': silva_nr99_v138.1_train_set.fa.gz
 
 We know have the two main outputs from the DADA2 pipeline. 
 removeBimeraDenovo output - a table with ASV counts (rows) across samples (columns)
 assignTaxonomy and add species output - a table with ASV taxonomy at different taxonomic ranks
 
-
-
 ## Remove the mock community
 
-One of the samples included in this sample dataset was a “mock community”. For simplicity we will remove this sample. 
+One of the samples included in this sample dataset was a “mock community”. For simplicity we will remove this sample from the removeBimeraDenovo output. 
 
 Select 'Advanced cut' from the tool panel and set the following paramters:
 * 'File to cut': removeBimeraDenovo output
@@ -290,10 +289,15 @@ Select 'Advanced cut' from the tool panel and set the following paramters:
 
 Rename the advanced cut output to something more meaningful e.g 'removeBimeraDenovo no mock'
 
-
 ## Hand-over to phyloseq
 
 The phyloseq R package is a powerful framework for further analysis of microbiome data. We now demonstrate how to straightforwardly import the tables produced by the DADA2 pipeline into phyloseq. We’ll also add the small amount of metadata we have – the samples are named by the gender (G), mouse subject number (X) and the day post-weaning (Y) it was sampled (eg. GXDY).
+
+Download the main DADA2 output 
+removeBimeraDenovo table without the mock sample
+assignTaxonomy and add species table
+
+To download results, select the resul header, then the save icon
 
 
 
