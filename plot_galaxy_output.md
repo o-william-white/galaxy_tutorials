@@ -1,4 +1,4 @@
-Plot DADA2 galaxy output
+Plot DADA2 galaxy output in R
 ================
 
 #### Load libraries
@@ -155,34 +155,33 @@ ord.nmds.bray <- ordinate(ps.prop, method="NMDS", distance="bray")
 ```
 
     ## Run 0 stress 0.08043117 
-    ## Run 1 stress 0.08616061 
-    ## Run 2 stress 0.09477227 
-    ## Run 3 stress 0.08076339 
-    ## ... Procrustes: rmse 0.01048601  max resid 0.03226874 
-    ## Run 4 stress 0.08076341 
-    ## ... Procrustes: rmse 0.01057595  max resid 0.03256229 
-    ## Run 5 stress 0.08616061 
-    ## Run 6 stress 0.08076338 
-    ## ... Procrustes: rmse 0.01052129  max resid 0.03238335 
-    ## Run 7 stress 0.08043117 
-    ## ... New best solution
-    ## ... Procrustes: rmse 3.110648e-06  max resid 6.93556e-06 
-    ## ... Similar to previous best
-    ## Run 8 stress 0.101063 
-    ## Run 9 stress 0.09477173 
+    ## Run 1 stress 0.09477205 
+    ## Run 2 stress 0.08616061 
+    ## Run 3 stress 0.08076336 
+    ## ... Procrustes: rmse 0.01047778  max resid 0.03224319 
+    ## Run 4 stress 0.08616061 
+    ## Run 5 stress 0.09477114 
+    ## Run 6 stress 0.08616061 
+    ## Run 7 stress 0.08076338 
+    ## ... Procrustes: rmse 0.01052394  max resid 0.03239286 
+    ## Run 8 stress 0.1010631 
+    ## Run 9 stress 0.08616061 
     ## Run 10 stress 0.08616061 
-    ## Run 11 stress 0.1228545 
+    ## Run 11 stress 0.09477203 
     ## Run 12 stress 0.08616061 
-    ## Run 13 stress 0.1228545 
-    ## Run 14 stress 0.094772 
-    ## Run 15 stress 0.1334791 
-    ## Run 16 stress 0.08616062 
-    ## Run 17 stress 0.0807634 
-    ## ... Procrustes: rmse 0.01056616  max resid 0.03252865 
-    ## Run 18 stress 0.08616061 
-    ## Run 19 stress 0.08616061 
-    ## Run 20 stress 0.1212044 
-    ## *** Solution reached
+    ## Run 13 stress 0.08616061 
+    ## Run 14 stress 0.08616061 
+    ## Run 15 stress 0.08616061 
+    ## Run 16 stress 0.08616061 
+    ## Run 17 stress 0.08616061 
+    ## Run 18 stress 0.09477203 
+    ## Run 19 stress 0.08076337 
+    ## ... Procrustes: rmse 0.01051394  max resid 0.03236043 
+    ## Run 20 stress 0.08076342 
+    ## ... Procrustes: rmse 0.01058626  max resid 0.03259595 
+    ## *** No convergence -- monoMDS stopping criteria:
+    ##     15: stress ratio > sratmax
+    ##      5: scale factor of the gradient < sfgrmin
 
 ``` r
 plot_ordination(ps.prop, ord.nmds.bray, color='When', title="Bray NMDS", axes=1:2) + theme_classic()
