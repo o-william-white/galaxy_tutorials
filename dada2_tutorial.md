@@ -243,28 +243,30 @@ Select 'dada2: sequence counts' from the tool panel and set the following paramt
 * 'Datasets(s)': select the dataset collection tab and then the filterAndTrim statistics output
 * 'name': filterAndTrim
 * select 'inset data sets' 
-  * 'Datasets(s)': select the dataset collection tab and then the dada forward output
-  * 'name': denoisedF
-  * select 'inset data sets'
-    * 'Datasets(s)': select the dataset collection tab and then the dada reverse output
-    * 'name': denoisedR
-    * select 'inset data sets'
-      * 'Datasets(s)': select the dataset collection tab and then the mergePairs output
-      * 'name': merged
-      * select 'inset data sets'
-        * 'Datasets(s)': select removeBimeraDenovo output
-        * 'name': nonchim
+
+* 'Datasets(s)': select the dataset collection tab and then the dada forward output
+* 'name': denoisedF
+* select 'inset data sets'
+
+* 'Datasets(s)': select the dataset collection tab and then the dada reverse output
+* 'name': denoisedR
+* select 'inset data sets'
+
+* 'Datasets(s)': select the dataset collection tab and then the mergePairs output
+* 'name': merged
+* select 'inset data sets'
+
+* 'Datasets(s)': select removeBimeraDenovo output
+* 'name': nonchim
 
 
 ## Assign taxonomy
 
 It is common at this point, especially in 16S/18S/ITS amplicon sequencing, to assign taxonomy to the sequence variants. The DADA2 package provides a native implementation of the naive Bayesian classifier method for this purpose. The assignTaxonomy function takes as input a set of sequences to be classified and a training set of reference sequences with known taxonomy, and outputs taxonomic assignments with at least minBoot bootstrap confidence.
 
-DADA2 maintains formatted training fastas for the RDP training set, GreenGenes clustered at 97% identity, and the Silva reference database, and additional trainings fastas suitable for protists and certain specific environments have been contributed. For fungal taxonomy, the General Fasta release files from the UNITE ITS database can be used as is.
-
 Download the silva_nr_v132_train_set.fa.gz file
 
-Open the Galaxy Upload Manager ('Upload data' bottun on the top of the tool panel)
+Open the Galaxy Upload Manager ('Upload data' botton on the top of the tool panel)
 Select 'Paste/Fetch Data'
 Paste the URL https://zenodo.org/record/4587955/files/silva_nr99_v138.1_train_set.fa.gz into the text field 
 Press Start
@@ -276,6 +278,26 @@ Select 'dada2: assignTaxonomy and addSpecies' from the tool panel and set the fo
  * 'Reference dataset': silva_nr99_v138.1_train_set.fa.gz
 
 We know have the two main outputs from the DADA2 pipeline. 
-The removeBimeraDenovo output is a table with ASV counts (rows) across samples (columns)
-The assignTaxonomy and add species output is a table with ASV taxonomy at different taxonomic ranks
+removeBimeraDenovo output - a table with ASV counts (rows) across samples (columns)
+assignTaxonomy and add species output - a table with ASV taxonomy at different taxonomic ranks
+
+
+
+## Remove the mock community
+
+One of the samples included in this sample dataset was a “mock community”. For simplicity we will remove this sample. 
+
+Select 'Advanced cut' from the tool panel and set the following paramters:
+* 'File to cut': removeBimeraDenovo output
+* 'Operation': Discard
+* 'List of fields': column 21
+
+Rename the advanced cut output to something more meaningful e.g 'removeBimeraDenovo no mock'
+
+
+## Hand-over to phyloseq
+
+The phyloseq R package is a powerful framework for further analysis of microbiome data. We now demonstrate how to straightforwardly import the tables produced by the DADA2 pipeline into phyloseq. We’ll also add the small amount of metadata we have – the samples are named by the gender (G), mouse subject number (X) and the day post-weaning (Y) it was sampled (eg. GXDY).
+
+
 
