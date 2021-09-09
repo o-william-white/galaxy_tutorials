@@ -194,6 +194,7 @@ Repeats the learnError step for the reverse reads as above.
 We are now ready to apply the core sample inference algorithm (dada) to the filtered and trimmed sequence data.
 
 Select 'dada2: dada' from the tool panel and set the following paramters:
+* 'Process samples in batches': yes
 * 'Reads': select the dataset collection tab and then the filterAndTrim collection for forward reads from the drop down list 
 * 'Error rates': learn error output for the forward reads
 
@@ -225,17 +226,35 @@ Select 'dada2: mergePairs' from the tool panel and set the following paramters:
 We can now construct an amplicon sequence variant table (ASV) table, a higher-resolution version of the OTU table produced by traditional methods.
 
 Select 'dada2: makeSequenceTable' from the tool panel and set the following paramters:
-* 'samples': 
-
+* 'samples': select the dataset collection tab and then the mergePairs output collection from the drop down list
 
 ## Remove chimeras
 
 The core dada method corrects substitution and indel errors, but chimeras remain. Fortunately, the accuracy of sequence variants after denoising makes identifying chimeric ASVs simpler than when dealing with fuzzy OTUs. Chimeric sequences are identified if they can be exactly reconstructed by combining a left-segment and a right-segment from two more abundant “parent” sequences.
 
+Select 'dada2: removeBimeraDenovo' from the tool panel and set the following paramters:
+* 'sequence table': select makeSequenceTable output
 
 ## Track reads through the pipeline
 
 As a final check of our progress, we’ll look at the number of reads that made it through each step in the pipeline:
+
+Select 'dada2: sequence counts' from the tool panel and set the following paramters:
+* 'Datasets(s)': select the dataset collection tab and then the filterAndTrim statistics output
+* 'name': filterAndTrim
+* select 'inset data sets' 
+ * 'Datasets(s)': select the dataset collection tab and then the dada forward output
+ * 'name': denoisedF
+ * select 'inset data sets'
+  * 'Datasets(s)': select the dataset collection tab and then the dada reverse output
+  * 'name': denoisedR
+  * select 'inset data sets'
+   * 'Datasets(s)': select the dataset collection tab and then the mergePairs output
+   * 'name': merged
+   * select 'inset data sets'
+    * 'Datasets(s)': select removeBimeraDenovo output
+    * 'name': nonchim
+
 
 ## Assign taxonomy
 
@@ -250,3 +269,13 @@ Select 'Paste/Fetch Data'
 Paste the URL https://zenodo.org/record/4587955/files/silva_nr99_v138.1_train_set.fa.gz into the text field 
 Press Start
 Close the window
+
+Select 'dada2: assignTaxonomy and addSpecies' from the tool panel and set the following paramters:
+* 'sequences to be assigned': removeBimeraDenovo output
+* 'Select a reference dataset your history or use a built-in?': Use reference data from history
+ * 'Reference dataset': silva_nr99_v138.1_train_set.fa.gz
+
+We know have the two main outputs from the DADA2 pipeline. 
+The removeBimeraDenovo output is a table with ASV counts (rows) across samples (columns)
+The assignTaxonomy and add species output is a table with ASV taxonomy at different taxonomic ranks
+
