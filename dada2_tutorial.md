@@ -243,17 +243,17 @@ Select 'dada2: sequence counts' from the tool panel and set the following paramt
 * 'Datasets(s)': select the dataset collection tab and then the filterAndTrim statistics output
 * 'name': filterAndTrim
 * select 'inset data sets' 
- * 'Datasets(s)': select the dataset collection tab and then the dada forward output
- * 'name': denoisedF
- * select 'inset data sets'
-  * 'Datasets(s)': select the dataset collection tab and then the dada reverse output
-  * 'name': denoisedR
+  * 'Datasets(s)': select the dataset collection tab and then the dada forward output
+  * 'name': denoisedF
   * select 'inset data sets'
-   * 'Datasets(s)': select the dataset collection tab and then the mergePairs output
-   * 'name': merged
-   * select 'inset data sets'
-    * 'Datasets(s)': select removeBimeraDenovo output
-    * 'name': nonchim
+    * 'Datasets(s)': select the dataset collection tab and then the dada reverse output
+    * 'name': denoisedR
+    * select 'inset data sets'
+      * 'Datasets(s)': select the dataset collection tab and then the mergePairs output
+      * 'name': merged
+      * select 'inset data sets'
+        * 'Datasets(s)': select removeBimeraDenovo output
+        * 'name': nonchim
 
 
 ## Assign taxonomy
