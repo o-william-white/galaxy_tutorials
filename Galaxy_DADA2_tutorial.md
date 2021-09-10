@@ -71,11 +71,6 @@ https://zenodo.org/record/800651/files/F3D9_R1.fastq
 https://zenodo.org/record/800651/files/F3D9_R2.fastq
 https://zenodo.org/record/800651/files/Mock_R1.fastq
 https://zenodo.org/record/800651/files/Mock_R2.fastq
-https://zenodo.org/record/800651/files/HMP_MOCK.v35.fasta
-https://zenodo.org/record/800651/files/silva.v4.fasta
-https://zenodo.org/record/800651/files/trainset9_032012.pds.fasta
-https://zenodo.org/record/800651/files/trainset9_032012.pds.tax
-https://zenodo.org/record/800651/files/mouse.dpw.metadata
 ```
 ### 3. Organise data into paired collection
 There are a lot of files in the history now but Galaxy can organise our files into collections to make it more managable. Since we have paired-end data, each sample consists of two separate fastq files, one containing the forward reads, and one containing the reverse reads. We can recognise the pairing from the file names, which will differ only by _R1 or _R2 in the filename. We can tell Galaxy about this paired naming convention, so that our tools will know which files belong together. We do this by building a List of Dataset Pairs.
