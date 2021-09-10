@@ -17,8 +17,8 @@ In this tutorial we will cover:
  - [Track reads through the pipeline](#track-reads-through-the-pipeline)
  - [Assign taxonomy](#assign-taxonomy)
 
-## Pipeline outline
-
+## DADA2 Pipeline
+Below is a schematic with the main steps in the DADA2 worklfow that we will carry out.
 ![Pipeline outline](/images/pipeline_outline.png)
 
 ## Importing the data into Galaxy
