@@ -302,7 +302,7 @@ Download the main DADA2 output
 removeBimeraDenovo table without the mock sample
 assignTaxonomy and add species table
 
-To download results, select the resul header, then the save icon
+To download results, select the result header, then the save icon
 
 
 
