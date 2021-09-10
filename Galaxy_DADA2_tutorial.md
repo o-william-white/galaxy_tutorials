@@ -13,6 +13,13 @@ In this tutorial we will cover:
  - [Sample inference](#sample-inference)
  - [Merge paired reads](#merge-paired-reads)
  - [Construct sequence table](#construct-sequence-table)
+ - [Remove chimeras](#remove-chimeras)
+ - [Track reads through the pipeline](#track-reads-through-the-pipeline)
+ - [Assign taxonomy](#assign-taxonomy)
+
+## Pipeline outline
+
+![Pipeline outline](/images/pipeline_outline.png)
 
 ## Importing the data into Galaxy
 
