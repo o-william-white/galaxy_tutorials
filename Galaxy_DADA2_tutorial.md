@@ -266,10 +266,7 @@ Download the silva_nr_v132_train_set.fa.gz file
 
 Open the Galaxy Upload Manager ('Upload data' botton on the top of the tool panel)
 Select 'Paste/Fetch Data'
-Paste the URL below in to the text field
-```
-https://zenodo.org/record/4587955/files/silva_nr99_v138.1_train_set.fa.gz
-```
+Paste the URL https://zenodo.org/record/4587955/files/silva_nr99_v138.1_train_set.fa.gz into the text field
 Press Start
 Close the window
 
