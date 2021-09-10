@@ -78,6 +78,7 @@ https://zenodo.org/record/800651/files/F3D9_R1.fastq
 https://zenodo.org/record/800651/files/F3D9_R2.fastq
 https://zenodo.org/record/800651/files/Mock_R1.fastq
 https://zenodo.org/record/800651/files/Mock_R2.fastq
+https://zenodo.org/record/4587955/files/silva_nr99_v138.1_train_set.fa.gz
 ```
 ### 3. Organise data into paired collection
 There are a lot of files in the history now but Galaxy can organise our files into collections to make it more managable. Since we have paired-end data, each sample consists of two separate fastq files, one containing the forward reads, and one containing the reverse reads. We can recognise the pairing from the file names, which will differ only by _R1 or _R2 in the filename. We can tell Galaxy about this paired naming convention, so that our tools will know which files belong together. We do this by building a List of Dataset Pairs.
@@ -261,17 +262,6 @@ Select 'dada2: sequence counts' from the tool panel and set the following paramt
 ## Assign taxonomy
 
 It is common at this point, especially in 16S/18S/ITS amplicon sequencing, to assign taxonomy to the sequence variants. The DADA2 package provides a native implementation of the naive Bayesian classifier method for this purpose. The assignTaxonomy function takes as input a set of sequences to be classified and a training set of reference sequences with known taxonomy, and outputs taxonomic assignments with at least minBoot bootstrap confidence.
-
-Download the silva_nr_v132_train_set.fa.gz file
-
-Open the Galaxy Upload Manager ('Upload data' botton on the top of the tool panel)  
-Select 'Paste/Fetch Data'  
-Paste the URL below into the text field  
-```
-https://zenodo.org/record/4587955/files/silva_nr99_v138.1_train_set.fa.gz into the text field
-```
-Press Start  
-Close the window  
 
 Select 'dada2: assignTaxonomy and addSpecies' from the tool panel and set the following paramters:
 * 'sequences to be assigned': removeBimeraDenovo output
