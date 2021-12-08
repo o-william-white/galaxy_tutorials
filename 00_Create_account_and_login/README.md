@@ -24,6 +24,7 @@ You should then see a window that looks like this
 However, you won't be able to use Galaxy until you **verify your email address**. Check you emails and select the link to verify your account. 
 
 Once you have done this you can return to Galaxy. The Galaxy page should look like this:
+
 ![](images/logged_in.png)  
 
 Note that the menu bar has now changed, there is now a "User" option
