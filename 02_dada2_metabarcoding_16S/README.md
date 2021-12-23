@@ -17,9 +17,10 @@ In this tutorial we will cover:
  - [Track reads through the pipeline](#track-reads-through-the-pipeline)
  - [Assign taxonomy](#assign-taxonomy)
 
-## DADA2 Pipeline
-Below is a schematic with the main steps in the DADA2 worklfow that we will carry out.
-![Pipeline outline](/images/pipeline_outline.png)
+## DADA2 Pipeline  
+Below is a schematic with the main steps in the DADA2 worklfow that we will carry out.  
+
+![](images/pipeline_outline.png)
 
 ## Importing the data into Galaxy
 
@@ -93,11 +94,11 @@ Change _1 to _R1 in the text field on the top left
 Change _2 to _R2 om the text field on the top right
 You should now see a list of pairs suggested by Galaxy:
 
-![Collection_1](/images/collection_1.png)
+![Collection_1](images/collection_1.png)
 
 Click on auto-pair to create the suggested pairs.
 
-![Collection_2](/images/collection_2.png)
+![Collection_2](images/collection_2.png)
 
 Name the pairs
 The middle segment is the name for each pair.
@@ -122,11 +123,11 @@ Once complete, there will be two collections of plots in your galaxy history. On
 
 In gray-scale is a heat map of the frequency of each quality score at each base position. The mean quality score at each position is shown by the green line, and the quartiles of the quality score distribution by the orange lines. The red line shows the scaled proportion of reads that extend to at least that position (this is more useful for other sequencing technologies, as Illumina reads are typically all the same length, hence the flat red line). 
 
-![quality profile forward](/images/quality_profile_forward.png)
+![quality profile forward](images/quality_profile_forward.png)
 
 The forward reads are good quality. We generally advise trimming the last few nucleotides to avoid less well-controlled errors that can arise there. These quality profiles do not suggest that any additional trimming is needed. 
 
-![quality profile reverse](/images/quality_profile_reverse.png)
+![quality profile reverse](images/quality_profile_reverse.png)
 
 The reverse reads are of significantly worse quality, especially at the end, which is common in Illumina sequencing. This isn’t too worrisome, as DADA2 incorporates quality information into its error model which makes the algorithm robust to lower quality sequence, but trimming as the average qualities crash will improve the algorithm’s sensitivity to rare sequence variants. 
 
@@ -186,7 +187,7 @@ To change the the name of a result in your history:
 
 Below the plot produced for the forward reads 
 
-![learn errors forward](/images/learn_errors_forward.png)
+![learn errors forward](images/learn_errors_forward.png)
 
 The error rates for each possible transition (A→C, A→G, …) are shown. Points are the observed error rates for each consensus quality score. The black line shows the estimated error rates after convergence of the machine-learning algorithm. The red line shows the error rates expected under the nominal definition of the Q-score. Here the estimated error rates (black line) are a good fit to the observed rates (points), and the error rates drop with increased quality as expected. Everything looks reasonable and we proceed with confidence.
 
