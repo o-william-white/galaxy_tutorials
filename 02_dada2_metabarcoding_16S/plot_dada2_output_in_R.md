@@ -121,7 +121,7 @@ ps
 plot_bar(ps, fill = "phylum")
 ```
 
-![](plot_galaxy_output_in_R_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
+![](plot_dada2_output_in_R_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
 
 ``` r
 # stacked bar plot of top 20 sequences across early and late
@@ -131,7 +131,7 @@ ps.top20 <- prune_taxa(top20, ps.top20)
 plot_bar(ps.top20, x="Day", fill="phylum") + facet_wrap(~When, scales="free_x")
 ```
 
-![](plot_galaxy_output_in_R_files/figure-gfm/unnamed-chunk-5-2.png)<!-- -->
+![](plot_dada2_output_in_R_files/figure-gfm/unnamed-chunk-5-2.png)<!-- -->
 
 ``` r
 # alpha diversity by group
@@ -145,7 +145,7 @@ plot_richness(ps, x='When', measures=c("Shannon", "Simpson"), color='When') + th
     ## 
     ## We recommended that you find the un-trimmed data and retry.
 
-![](plot_galaxy_output_in_R_files/figure-gfm/unnamed-chunk-5-3.png)<!-- -->
+![](plot_dada2_output_in_R_files/figure-gfm/unnamed-chunk-5-3.png)<!-- -->
 
 ``` r
 # ordination
@@ -193,4 +193,4 @@ ord.nmds.bray <- ordinate(ps.prop, method="NMDS", distance="bray")
 plot_ordination(ps.prop, ord.nmds.bray, color='When', title="Bray NMDS", axes=1:2) + theme_classic()
 ```
 
-![](plot_galaxy_output_in_R_files/figure-gfm/unnamed-chunk-5-4.png)<!-- -->
+![](plot_dada2_output_in_R_files/figure-gfm/unnamed-chunk-5-4.png)<!-- -->
